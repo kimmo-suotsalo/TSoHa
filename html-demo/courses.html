@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+    
+<head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<link rel="stylesheet" href="../css/genericStyles.css">
+	<title> Course feedback system | Courses </title>
+</head>
+
+<body>		
+    <ul class="menuBar">          
+        <li class="menuItem"> <a class="menuLink" href="main.html"> Main page </a> </li>
+        <li class="menuItem" id="active"> <a class="menuLink" href="courses.html"> Courses </a> </li>
+        <li class="menuItem"> <a class="menuLink" href="statistics.html"> Statistics </a> </li>
+        <li class="menuItem"> <a class="menuLink" href="login.html"> Logout </a> </li>
+    </ul>
+    
+    <div class=smallFont>
+	    <a class="navLink" href="courses.html"> Courses </a> >
+    </div>
+    
+    <br>
+    
+    <table>
+        <tr> <th> Id </th> <th> Name </th> <th> Credits </th> <th> Begin date </th> <th> End date </th> </tr>
+        <tr> <td> <a class="navLink" href="queries.html"> 012145678 </td> <td> Introduction to programming </td> <td class="centered"> 4 </td> 
+            <td class="centered"> 2014-01-13 </td> <td class="centered"> 2014-05-16 </td> </tr>
+        <tr> <td> <a class="navLink" href="queries.html"> 012245678 </td> <td> Basics of JavaScript </td> <td class="centered"> 2 </td>
+            <td class="centered"> 2014-01-13 </td> <td class="centered"> 2014-03-21 </td> </tr>
+        <tr> <td> <a class="navLink" href="queries.html"> 012345678 </td> <td> Software engineering </td> <td class="centered"> 6 </td>
+            <td class="centered"> 2014-01-13 </td> <td class="centered"> 2014-05-16 </td> </tr>
+    </table>
+    
+    <p class="padded">
+    <input type="submit" value="Create a new course" onclick="getPage('courses.html');" />
+    </p>
+    
+</body>
+
+</html>

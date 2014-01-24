@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+    
+<head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<link rel="stylesheet" href="../css/genericStyles.css">
+        <title> Course feedback system | Queries </title>
+</head>
+
+<body>		
+    <ul class="menuBar">          
+        <li class="menuItem"> <a class="menuLink" href="main.html"> Main page </a> </li>
+        <li class="menuItem" id="active"> <a class="menuLink" href="courses.html"> Courses </a> </li>
+        <li class="menuItem"> <a class="menuLink" href="statistics.html"> Statistics </a> </li>
+        <li class="menuItem"> <a class="menuLink" href="login.html"> Logout </a> </li>
+    </ul>
+    
+    <div class=smallFont>
+	      <a class="navLink" href="courses.html"> Courses </a> >
+  	    <a class="navLink" href="queries.html"> Introduction to programming </a> >
+    </div>
+    
+    <br>
+        <h1 class="padded"> Introduction to programming </h1>
+    <br>    
+
+    <table>
+        <tr>
+            <th> Query id </th> <th> Created by </th> <th> Status </th> <th> Opening date and time </th> <th> Closing date and time </th>
+        </tr>
+        <tr>
+            <td> <a class="navLink" href="query.html"> 012145678001 </td>
+            <td> Firstname Lastname </td> <td> inactive </td> 
+            <td> 2013-01-10 08:00:00 </td> <td> 2013-05-14 23:59:59 </td>
+        </tr>
+        <tr> <td> <a class="navLink" href="query.html"> 012145678002 </td>
+            <td> Firstname Lastname </td> <td> inactive </td>
+            <td> 2013-09-15 08:00:00 </td> <td> 2013-12-21 23:59:59 </td>
+        </tr>
+        <tr> <td> <a class="navLink" href="query.html"> 012145678003 </td>
+            <td> Firstname Lastname </td> <td> active </td>
+            <td> 2014-01-13 08:00:00 </td> <td> 2014-05-16 23:59:59 </td>
+        </tr>
+    </table>
+    
+    <p class="padded">
+        <input type="submit" value="Edit this course" onclick="getPage('queries.html');" />
+        <input type="submit" value="Remove this course" onclick="getPage('queries.html');" />
+        <input type="submit" value="Create a new query" onclick="getPage('queries.html');" />
+    </p>
+    
+</body>
+
+</html>

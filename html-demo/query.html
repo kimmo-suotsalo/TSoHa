@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    
+<head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<link rel="stylesheet" href="../css/genericStyles.css">
+  	<script src="scripts.js"> </script>
+  	<title> Course feedback system | Queries </title>
+</head>
+
+<body>		
+    <ul class="menuBar">          
+        <li class="menuItem"> <a class="menuLink" href="main.html"> Main page </a> </li>
+        <li class="menuItem" id="active"> <a class="menuLink" href="courses.html"> Courses </a> </li>
+        <li class="menuItem"> <a class="menuLink" href="statistics.html"> Statistics </a> </li>
+        <li class="menuItem"> <a class="menuLink" href="login.html"> Logout </a> </li>
+    </ul>
+    
+    <div class=smallFont>
+	      <a class="navLink" href="courses.html"> Courses </a> >
+	      <a class="navLink" href="queries.html"> Introduction to programming </a> >
+	      <a class="navLink" href="query.html"> Query 012145678003 </a> >
+    </div>
+    
+    <br>
+    
+    <table>
+        <tr>
+            <th> Query id </th> <th> Created by </th> <th> Status </th> <th> Opening date </th> <th> Closing date </th>
+        </tr>
+        <tr>
+            <td> 012145678003 </td>
+            <td> Firstname Lastname </td> <td> active </td>
+            <td class="centered"> 13.01.2014 </td> <td class="centered"> 16.05.2014 </td>          
+        </tr>
+    </table>
+
+    <p class="padded">
+        <input type="submit" value="Answer this query" onclick="getPage('feedbackForm.html');" />
+        <input type="submit" value="View questions" onclick="getPage('query.html');" />
+        <input type="submit" value="Edit questions" onclick="getPage('query.html');" />
+        <input type="submit" value="Remove this query" onclick="getPage('query.html');" />
+        <input type="submit" value="Show statistics" onclick="getPage('queryStats.html');" />            
+    </p>
+</body>
+
+</html>
+
+
+
