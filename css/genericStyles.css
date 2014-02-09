@@ -72,3 +72,15 @@ td {
 .helpText {
 	color: rgb(0%,15%,30%);
 }
+
+.wideField {
+  width: 500px;
+}
+
+#error {
+  color: rgb(100%,0%,0%);
+}
+
+#unbordered {
+  border-style: none;
+}

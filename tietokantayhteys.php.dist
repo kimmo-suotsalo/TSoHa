@@ -1,0 +1,19 @@
+<?php
+
+function getTietokantayhteys() {
+
+  static $yhteys = null;
+
+  if ($yhteys === null) { 
+                                    
+    $tunnus = '';
+    $salasana= '';
+
+    $yhteys = new PDO('mysql:unix_socket=/kotihakemistosi/mysql/socket;dbname=tietokantasi', $tunnus, $salasana);
+
+    $yhteys->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+  }
+
+  return $yhteys;
+}

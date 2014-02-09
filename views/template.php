@@ -5,15 +5,20 @@
 class Template {
 
   private $pageName;
+  private $navigationTree;
+  private $path;
   private $pageTop;
   private $pageBottom;
 
-  public function __construct($pageName) {
+  public function __construct($pageName, $navigationTree) {
     $this->pageName = $pageName;
+    $this->navigationTree = $navigationTree;
+    if ($this->pageName == 'Course details' || $this->pageName == 'Edit course') $this->path = "../";
+    else $this->path = "./";
     $this->pageTop = $this->createPageTop();
     $this->pageBottom = $this->createPageBottom();
   }
-  
+
   public function displayTop() {
     echo $this->pageTop;
   }
@@ -39,24 +44,29 @@ class Template {
   private function createHead() {
     return "
   	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-  	<link rel='stylesheet' href='css/genericStyles.css'>
+  	<link rel='stylesheet' href='{$this->path}css/genericStyles.css'>
   	<title> Course feedback system | {$this->pageName} </title>";
   }     
      
   private function createMenuBar() {
+    $menuItemIDs = array("Main page" => "", "Courses" => "", "Statistics" => "");
+    $menuItemIDs[$this->pageName] = "id='active'";    
     return "
     <ul class='menuBar'>          
-      <li class='menuItem' id='active'> <a class='menuLink' href='main.php'> Main page </a> </li>
-      <li class='menuItem'> <a class='menuLink' href='courses.php'> Courses </a> </li>
-      <li class='menuItem'> <a class='menuLink' href='statistics.php'> Statistics </a> </li>
-      <li class='menuItem'> <a class='menuLink' href='index.php'> Logout </a> </li>
+      <li class='menuItem' {$menuItemIDs["Main page"]} > <a class='menuLink' href='{$this->path}main.php'> Main page </a> </li>
+      <li class='menuItem' {$menuItemIDs["Courses"]} > <a class='menuLink' href='{$this->path}courses.php'> Courses </a> </li>
+      <li class='menuItem' {$menuItemIDs["Statistics"]} > <a class='menuLink' href='{$this->path}statistics.php'> Statistics </a> </li>
+      <li class='menuItem'> <a class='menuLink' href='{$this->path}index.php'> Logout </a> </li>
     </ul>";
   }
   
   private function createNavLinks() {
+    if ($this->pageName == "Main page") $href = "'main.php'";
+    else if ($this->pageName == "Courses") $href = "'courses.php'";
+    else if ($this->pageName == "Statistics") $href = "'statistics.php'";  
     return "
     <div class='smallFont'>
-      <a class='navLink' href='main.php'> {$this->pageName} </a> >
+      {$this->navigationTree} <a class='navLink' href={$href}> {$this->pageName} </a> >
     </div>";
   }
      
