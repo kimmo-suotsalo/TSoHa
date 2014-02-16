@@ -25,14 +25,11 @@
              "name={$searchResults[0]->getName()}&credits={$searchResults[0]->getCredits()}");
     } else if ($_POST['action'] == 'Delete this course') {
       $view->confirmDeletion();
+    } else if ($_POST['action'] == 'Show realizations') {
+      header("Location: ../realizations.php/?courseId={$searchResults[0]->getId()}&".
+             "courseName={$searchResults[0]->getName()}");
     }
   
   } else {
     header("Location: index.php");
-  }  
-  
-  
-  
-  
-  
-  
+  }

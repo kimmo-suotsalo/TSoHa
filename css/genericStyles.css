@@ -84,3 +84,14 @@ td {
 #unbordered {
   border-style: none;
 }
+
+.tableItem {
+  text-align: center;  
+	text-decoration: none;
+	color: black;	
+	display: block;	
+}
+
+.tableItem:HOVER {
+	background-color: rgb(0%,60%,80%);
+}

@@ -12,7 +12,6 @@ class CourseCatalog {
     $query->execute( array($id, $name, $credits) );
   }
   
-
   public function findCourseById($id) {
     $sql = "select * from Kurssi where kurssikoodi = ? order by nimi;";
     $query = getTietokantayhteys()->prepare($sql);

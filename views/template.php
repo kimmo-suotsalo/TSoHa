@@ -13,7 +13,9 @@ class Template {
   public function __construct($pageName, $navigationTree) {
     $this->pageName = $pageName;
     $this->navigationTree = $navigationTree;
-    if ($this->pageName == 'Course details' || $this->pageName == 'Edit course') $this->path = "../";
+    if ($this->pageName == 'Course details' || $this->pageName == 'Edit course' || $this->pageName == 'Realizations' ||
+        $this->pageName == 'Create a new realization' || $this->pageName == 'Realization details' || $this->pageName == 'Edit realization')
+        $this->path = "../";
     else $this->path = "./";
     $this->pageTop = $this->createPageTop();
     $this->pageBottom = $this->createPageBottom();
@@ -50,7 +52,15 @@ class Template {
      
   private function createMenuBar() {
     $menuItemIDs = array("Main page" => "", "Courses" => "", "Statistics" => "");
-    $menuItemIDs[$this->pageName] = "id='active'";    
+    $page = $this->pageName;
+
+    if ($page == "Main page") $menuItemIDs["Main page"] = "id='active'";
+    else if ($page == "Courses" || $page == "Create a new course" || $page == "Course details" ||
+             $page == "Edit course" || $page == "Create a new realization" ||
+             $page == "Realizations" || $page == "Realization details" || $page == "Edit realization")
+                $menuItemIDs["Courses"] = "id='active'";
+    else if ($page == "Statistics") $menuItemIDs["Statistics"] = "id='active'";
+    
     return "
     <ul class='menuBar'>          
       <li class='menuItem' {$menuItemIDs["Main page"]} > <a class='menuLink' href='{$this->path}main.php'> Main page </a> </li>

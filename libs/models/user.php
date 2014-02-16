@@ -44,6 +44,17 @@ class User {
     }
     return false;
   }    
+
+  public function isTeacher() {
+    $sql = "select * from Kayttooikeus where kayttaja = ?;";
+    $query = getTietokantayhteys()->prepare($sql);
+    $query->execute( array($this->username) );
+    $results = $query->fetch();
+    
+    if ($results[0] == $this->username && $results[1] == "teacher") return true;
+    return false;
+  }    
+  
     
   private function determineRole() {
     $sql = "select * from Rooli, Kayttooikeus, Kayttaja where Rooli.nimi = Kayttooikeus.rooli
@@ -53,7 +64,6 @@ class User {
     $results = $query->fetch();
     return $results[0];
   }
-    
  
   
 }  

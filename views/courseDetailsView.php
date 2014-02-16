@@ -29,13 +29,12 @@ class CourseDetailsView {
     $content = "<table> <tr> <th> Id </th> <th> Name </th> <th> Credits </th> </tr>";    
     $content = $content . "<tr> <td> {$course->getId()} </td>
                            <td> {$course->getName()} </td> <td class='centered'> {$course->getCredits()} </td> </tr> </table>";
-    if ($_SESSION['role'] == 'coordinator') {
-      $content = $content . " <form action='../courseRead.php/?id={$course->getId()}' method='post'>
-                              <p class='padded'>
-                              <input type='submit' name='action' value='Edit this course'; />
-                              <input type='submit' name='action' value='Delete this course'; />     
-                            </p> </form>";
-    }    
+    $content = $content . " <form action='../courseRead.php/?id={$course->getId()}' method='post'>
+                              <p class='padded'>";
+    if ($_SESSION['role'] == 'coordinator')
+      $content = $content . "<input type='submit' name='action' value='Edit this course'; />
+                              <input type='submit' name='action' value='Delete this course'; />";
+    $content = $content . "<input type='submit' name='action' value='Show realizations'; /> </p> </form>";        
     return $content;    
   }
 

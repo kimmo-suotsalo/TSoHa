@@ -29,7 +29,8 @@ class CoursesView {
     $content = $content . "<table> <tr> <th> Id </th> <th> Name </th> <th> Credits </th> </tr>";
         
     foreach ($searchResults as $course) {
-      $content = $content . "<tr> <td> <a class='navLink' href='courseRead.php/?id={$course->getId()}'> {$course->getId()} </td>
+      $content = $content . "<tr> <td class='tableItem'> <a class='tableItem' href='courseRead.php/?id={$course->getId()}'>
+                                  {$course->getId()} </td>
                              <td> {$course->getName()} </td> <td class='centered'> {$course->getCredits()} </td> </tr>
                              ";
     }
