@@ -14,7 +14,8 @@ class Template {
     $this->pageName = $pageName;
     $this->navigationTree = $navigationTree;
     if ($this->pageName == 'Course details' || $this->pageName == 'Edit course' || $this->pageName == 'Realizations' ||
-        $this->pageName == 'Create a new realization' || $this->pageName == 'Realization details' || $this->pageName == 'Edit realization')
+        $this->pageName == 'Create a new realization' || $this->pageName == 'Realization details' ||
+        $this->pageName == 'Edit realization' || $this->pageName == 'Queries' || $this->pageName == 'Create a new query')
         $this->path = "../";
     else $this->path = "./";
     $this->pageTop = $this->createPageTop();
@@ -44,10 +45,9 @@ class Template {
   }    
      
   private function createHead() {
-    return "
-  	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-  	<link rel='stylesheet' href='{$this->path}css/genericStyles.css'>
-  	<title> Course feedback system | {$this->pageName} </title>";
+    return "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>" .
+           "<link rel='stylesheet' href='{$this->path}css/genericStyles.css'>" .
+           "<title> Course feedback system | {$this->pageName} </title>";
   }     
      
   private function createMenuBar() {
@@ -55,11 +55,12 @@ class Template {
     $page = $this->pageName;
 
     if ($page == "Main page") $menuItemIDs["Main page"] = "id='active'";
+    else if ($page == "Statistics") $menuItemIDs["Statistics"] = "id='active'";
     else if ($page == "Courses" || $page == "Create a new course" || $page == "Course details" ||
              $page == "Edit course" || $page == "Create a new realization" ||
-             $page == "Realizations" || $page == "Realization details" || $page == "Edit realization")
+             $page == "Realizations" || $page == "Realization details" || $page == "Edit realization" ||
+             $page == "Queries" || $page = "Create a new query")
                 $menuItemIDs["Courses"] = "id='active'";
-    else if ($page == "Statistics") $menuItemIDs["Statistics"] = "id='active'";
     
     return "
     <ul class='menuBar'>          

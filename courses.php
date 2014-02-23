@@ -5,7 +5,6 @@
   session_start();
 
   require_once("views/coursesView.php");
-  require_once("views/courseCreationView.php");
   require_once("libs/models/courseCatalog.php");
   require_once("libs/models/course.php");
   require_once '../tietokantayhteys.php';
@@ -24,11 +23,10 @@
         $searchResults = $courseCatalog->findAll();
       }
       
-      $view = new coursesView($searchResults);
+      $view = new coursesView($_GET['createdNew'], $_GET['updated'], $_GET['deleted'], $searchResults);
       $view->display();      
     }
     
   } else {
     header("Location: index.php");
   }
-  

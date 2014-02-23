@@ -4,16 +4,17 @@
   
   session_start();
   
-  if ( isset($_SESSION['username']) ) {
-    session_destroy();  
-  }
-      
   require_once("views/loginView.php");
-  require_once '../tietokantayhteys.php';
   require_once("libs/models/user.php");
+  require_once '../tietokantayhteys.php';
+  
+  if ( isset($_SESSION['username']) ) {
+    session_destroy();
+    $loggedOut = true;
+  } else $loggedOut = false;
  
   $view = new LoginView();
-  $view->display(); 
+  $view->display($loggedOut); 
   
   if ($_POST["username"] != "") {
   
@@ -30,6 +31,3 @@
     }          
     
   }
-    
-
-

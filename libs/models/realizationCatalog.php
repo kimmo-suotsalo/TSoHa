@@ -31,7 +31,8 @@ class RealizationCatalog {
     $personInCharge = $query->fetch();
 
     $found = array();    
-    array_push( $found, new realization($row[0], $row[1], "{$row[2]}", "{$row[3]}", $row[4], $personInCharge[0], $personInCharge[1]) );    
+    array_push( $found, new realization($row[0], $row[1], "{$row[2]}", "{$row[3]}", $row[4],
+                $personInCharge[0], $personInCharge[1]) );    
     return $found;
   }
 

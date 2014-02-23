@@ -1,17 +1,17 @@
 <?php
 
-require_once '../tietokantayhteys.php';
-require_once 'kayttaja.php';
+  require_once 'kayttaja.php';
+  require_once '../tietokantayhteys.php';
 
-$sql = "SELECT tunnus, salasana from Kayttaja";
-$kysely = getTietokantayhteys()->prepare($sql);
-$kysely->execute();
+  $sql = "SELECT tunnus, salasana from Kayttaja";
+  $kysely = getTietokantayhteys()->prepare($sql);
+  $kysely->execute();
 
-$tulokset = array();
-foreach($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
-  $kayttaja = new Kayttaja($tulos->tunnus, $tulos->salasana);
-  $tulokset[] = $kayttaja;
-}
+  $tulokset = array();
+  foreach($kysely->fetchAll(PDO::FETCH_OBJ) as $tulos) {
+    $kayttaja = new Kayttaja($tulos->tunnus, $tulos->salasana);
+    $tulokset[] = $kayttaja;
+  }
 
 ?>
 

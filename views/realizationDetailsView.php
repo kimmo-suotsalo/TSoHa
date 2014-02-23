@@ -22,9 +22,10 @@ class RealizationDetailsView {
   }
   
   public function display() {
-    $navigationTree = "<a class='navLink' href='../courses.php'> Courses </a> >
-                       <a class='navLink' href='../courseRead.php/?id={$this->courseId}'> Course details </a> >
-                       <a class='navLink' href='../realizations.php/?courseId={$this->courseId}&courseName={$this->courseName}'> Realizations </a> >";
+    $navigationTree = "<a class='navLink' href='../courses.php'> Courses </a> > <a class='navLink' href='../courseRead.php/?" .
+                      "id={$this->courseId}'> Course details </a> > <a class='navLink' href='../realizations.php/?" .
+                      "courseId={$this->courseId}&courseName={$this->courseName}'> Realizations </a> >";
+                      
     $template = new Template($this->pageName, $navigationTree);
     $template->displayTop();
     echo $this->content;
@@ -33,30 +34,31 @@ class RealizationDetailsView {
   
   private function addContent($searchResults) {
     $realization = $searchResults[0];
-    $content = "<table> <tr> <th> Realization id </th> <th> Begin date </th> <th> End date </th> <th> Person in charge </th> </tr>";
-                
-      $content = $content . "<tr> <td class='centered'> {$realization->getId()} </td>
-                             <td> {$realization->getBeginDate()} </td> <td> {$realization->getEndDate()} </td>                             
-                             <td> {$realization->getfirstName()} {$realization->getLastName()} </td> </tr> </table>";
+    $content = "<h2 class='padded'> Course realization {$this->id} </h2> <table> <tr> <th> Realization id </th> <th> Begin date </th>" .
+               "<th> End date </th> <th> Person in charge </th> </tr> <tr> <td class='centered'> {$realization->getId()} </td> <td> " .
+               "{$realization->getBeginDate()} </td> <td> {$realization->getEndDate()} </td> <td> {$realization->getfirstName()} " .
+               "{$realization->getLastName()} </td> </tr> </table>";
                              
-    if ($_SESSION['role'] == 'coordinator') {
-      $content = $content . " <form action='../realizationRead.php/?id={$realization->getId()}&courseName={$this->courseName}' method='post'>
-                              <p class='padded'>
-                              <input type='submit' name='action' value='Edit this realization'; />
-                              <input type='submit' name='action' value='Delete this realization'; />
-                            </p> </form>";
-    }    
+    if ($_SESSION['role'] == 'coordinator') $content = $content . "<form action='../realizationRead.php/?id={$realization->getId()}&" .
+                                                                  "courseName={$this->courseName}' " . "method='post'> <p class='padded'>" .
+                                                                  "<input type='submit' name='action' value='Edit this realization'; /> " .
+                                                                  "<input type='submit' name='action' value='Delete this realization'; " .
+                                                                  "/> </p> </form>";
+                            
+    else if ( $_SESSION['role'] == 'teacher' && $_SESSION['username'] == $realization->getPersonInCharge() ) 
+
+      $content = $content . "<form action='../realizationRead.php/?id={$realization->getId()}&courseName={$this->courseName}' " .
+                            "method='post'> <p class='padded'> <input type='submit' name='action' value='Show queries'; /> </p> </form>";
     return $content;    
   }
 
   public function confirmDeletion() {
-    echo "<p class='padded' id='error'> Are you sure you want to permanently delete this realization? </p>";
-    echo "<p class='padded'>";
-    echo "<form class='padded' action='../realizations.php/?courseId={$this->courseId}&courseName={$this->courseName}' method='post'>            
-          <input type='hidden' name='deleteId' value='{$this->id}'; />
-          <input type='submit' value='Yes, delete'; /> </form> <p> <p >";
-    echo "<form class='padded' action='../realizationRead.php/?id={$this->id}&courseName={$this->courseName}' method='post'>            
-          <input type='submit' value='Cancel'; /> </form> </p> ";
+    $message = "<p class='padded' id='error'> Are you sure you want to permanently delete this realization? </p> <p class='padded'>" . 
+               "<form class='padded' action='../realizations.php/?deleted=true&courseId={$this->courseId}&" .
+               "courseName={$this->courseName}' method='post'> <input type='hidden' name='deleteId' value='{$this->id}'; />" .
+               "<input type='submit' value='Yes, delete'; /> </form> <p> <p> <form class='padded' action='../realizationRead.php/?" .
+               "id={$this->id}&courseName={$this->courseName}' method='post'> <input type='submit' value='Cancel'; /> </form> </p>";
+    echo $message;
   }
 
 

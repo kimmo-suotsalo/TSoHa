@@ -6,7 +6,6 @@ class LoginView {
 
   private $pageTop = '
   <!DOCTYPE html>
-
   <html>
     <head>
     	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,10 +32,11 @@ class LoginView {
   
   private $logoutMessage = '<div class="centered"> You have been logged out. </div>';
 
-  public function display() {
+  public function display($loggedOut) {
     echo $this->pageTop;
     echo $this->loginForm;
     echo $this->pageBottom;
+    if ($loggedOut) echo "<h2 class='message'> You have been logged out. </h2>";
   }    
 
   public function displayError() {

@@ -4,8 +4,6 @@
 
   session_start();
 
-  require_once("views/coursesView.php");
-  require_once("views/courseCreationView.php");
   require_once("views/courseDetailsView.php");
   require_once("libs/models/courseCatalog.php");
   require_once("libs/models/course.php");
@@ -13,9 +11,8 @@
   
   if ( isset($_SESSION['username']) ) {
     
-    $courseId = $_GET['id'];
     $courseCatalog = new courseCatalog();
-    $searchResults = $courseCatalog->findCourseById($courseId);
+    $searchResults = $courseCatalog->findCourseById($_GET['id']);
 
     $view = new courseDetailsView($searchResults);
     $view->display();

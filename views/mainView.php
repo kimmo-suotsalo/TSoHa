@@ -22,14 +22,19 @@ class MainView {
   }    
   
   private function addContent() {
-    return "
-    <h1 class='padded'> Course feedback system </h1>
-    <p class='padded'> You are logged in. </p>
-    <br>
-    <table class='padded'>
-      <tr> <th> First name </th> <th> Last name </th> <th> User role </th> </tr>
-      <tr> <td> {$_SESSION['firstName']} </td> <td> {$_SESSION['lastName']} </td> <td> {$_SESSION['role']} </td> </tr>
-    </table>";
+    $content = "<h1 class='padded'> Course feedback system </h1> <p class='padded'> Your login information: </p> <table class='padded'>" .
+               "<tr> <th> First name </th> <th> Last name </th> <th> User role </th> </tr> <tr> <td> {$_SESSION['firstName']} </td>" .
+               "<td> {$_SESSION['lastName']} </td> <td> {$_SESSION['role']} </td> </tr> </table> <p> <br> <br> <div class='padded'>" .
+               "As a {$_SESSION['role']} you may <p> <div class='padded'>";
+    
+    if ($_SESSION['role'] == "coordinator") $content = $content . "<li class='padded'> view, create, edit and delete courses </li>" .
+                                                                  "<li class='padded'> view, create, edit and delete realizations </li>";
+    else if ($_SESSION['role'] == "teacher") $content = $content . "<li class='padded'> view courses </li> <li class='padded'> view ". 
+                                                                   "realizations </li> <li class='padded'> view, create, edit and delete " .
+                                                                   "queries </li> ";        
+    else if ($_SESSION['role'] == "student") $content = $content . "<li class='padded'> view courses </li> <li class='padded'> view " .
+                                                                   "realizations </li> "; 
+    return $content;
   }
 
 }
